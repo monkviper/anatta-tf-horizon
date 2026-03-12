@@ -1046,12 +1046,129 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "try_risk_free": {
+      "type": "section",
+      "blocks": {
+        "content_group": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24,
+            "width": "fill",
+            "height": "fit",
+            "inherit_color_scheme": true
+          },
+          "blocks": {
+            "heading_group": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "gap": 12,
+                "width": "fill",
+                "height": "fit",
+                "inherit_color_scheme": true
+              },
+              "blocks": {
+                "label_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Try risk-free</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "tight",
+                    "letter_spacing": "loose",
+                    "case": "uppercase",
+                    "color": "var(--color-foreground)"
+                  }
+                },
+                "heading_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>15 million steaks delivered<br>(and counting)!</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "2rem",
+                    "line_height": "tight",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "balance",
+                    "color": "var(--color-foreground)"
+                  }
+                }
+              },
+              "block_order": ["label_text", "heading_text"]
+            },
+            "body_text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>More and more people are making the switch to Good Chop because of great variety, amazing taste, full flexibility and real convenience \u2013 see more on Why Good Chop or learn more about our sourcing. Try</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1.125rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)"
+              }
+            },
+            "cta_button": {
+              "type": "button",
+              "settings": {
+                "label": "Shop All Products",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "width": "fit-content",
+                "width_mobile": "fit-content"
+              }
+            }
+          },
+          "block_order": ["heading_group", "body_text", "cta_button"]
+        },
+        "featured_image": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image-54-6c200e52.png",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "border_radius": 4
+          }
+        }
+      },
+      "block_order": ["content_group", "featured_image"],
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 64,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
     "why_good_chop",
     "how_it_works",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "try_risk_free"
   ]
 }
