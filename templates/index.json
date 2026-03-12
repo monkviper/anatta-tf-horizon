@@ -155,6 +155,57 @@
         "padding-block-end": 48
       }
     },
+    "why_good_chop": {
+      "type": "why-good-chop",
+      "blocks": {
+        "outstanding_value": {
+          "type": "point",
+          "settings": {
+            "image": "shopify://shop_images/image-58-3bd67526.png",
+            "heading": "Outstanding Value",
+            "description": "Inflation-resistant pricing, members-only savings, and more."
+          }
+        },
+        "american": {
+          "type": "point",
+          "settings": {
+            "image": "shopify://shop_images/image-59-3e0fbd3b.png",
+            "heading": "100% American",
+            "description": "Proteins sourced from independent American farms and fisheries."
+          }
+        },
+        "deliveries": {
+          "type": "point",
+          "settings": {
+            "image": "shopify://shop_images/image-60-00a45093.png",
+            "heading": "Convenient Deliveries",
+            "description": "Flexible, fully customizable deliveries every 4, 6, or 8 weeks."
+          }
+        },
+        "guarantee": {
+          "type": "point",
+          "settings": {
+            "image": "shopify://shop_images/image-61-7107a924.png",
+            "heading": "Money-back Guarantee",
+            "description": "No commitments\u2014skip, reschedule, or cancel anytime."
+          }
+        }
+      },
+      "block_order": [
+        "outstanding_value",
+        "american",
+        "deliveries",
+        "guarantee"
+      ],
+      "settings": {
+        "heading": "WHY GOOD CHOP?",
+        "description": "In the past three years, meat and seafood prices in U.S. have gone up significantly. Our base plan prices have stayed the same since 2021.",
+        "color_scheme": "scheme-2",
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -352,6 +403,7 @@
   },
   "order": [
     "hero_jVaWmY",
+    "why_good_chop",
     "product_list_fa6P9H"
   ]
 }
