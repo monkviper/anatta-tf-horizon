@@ -1,0 +1,35 @@
+{% comment %}
+  Custom Fonts — Cubano
+
+  Loads the Cubano font via @font-face and overrides the heading/accent
+  CSS custom properties set by theme-styles-variables.liquid.
+
+  Note: The font_picker settings (type_heading_font, type_accent_font) show
+  "Source Sans Pro" in the Shopify theme editor because Cubano is not in
+  Shopify's font library. The actual rendered font is Cubano via this CSS
+  override. If cubano.woff2 is missing from assets, headings will gracefully
+  fall back to Source Sans Pro.
+{% endcomment %}
+
+<link
+  rel="preload"
+  as="font"
+  href="{{ 'cubano.woff2' | asset_url }}"
+  type="font/woff2"
+  crossorigin
+>
+
+<style>
+  @font-face {
+    font-family: 'cubano';
+    src: url({{ 'cubano.woff2' | asset_url }}) format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --font-heading--family: 'cubano', sans-serif;
+    --font-accent--family: 'cubano', sans-serif;
+  }
+</style>
