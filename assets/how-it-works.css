@@ -1,0 +1,111 @@
+/*
+ * How It Works Section — Custom CSS
+ * Scoped to #shopify-section-how_it_works
+ *
+ * Adds CSS-counter-based numbered circles, desktop circle-on-image overlap,
+ * and mobile layout transformation (hide images, horizontal cards).
+ */
+
+/* Counter setup on the steps group's content container */
+#shopify-section-how_it_works .section-content-wrapper > .group-block > .group-block-content {
+  counter-reset: step;
+}
+
+/* Increment counter on each card group */
+#shopify-section-how_it_works .section-content-wrapper > .group-block > .group-block-content > .group-block {
+  counter-increment: step;
+}
+
+/* Numbered circle ::before on each card's inner content wrapper */
+#shopify-section-how_it_works .section-content-wrapper > .group-block > .group-block-content > .group-block > .group-block-content::before {
+  content: counter(step);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5B642;
+  border-radius: 50%;
+  font-family: var(--font-heading--family);
+  color: #000000;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ========================================
+   Desktop (min-width: 750px)
+   ======================================== */
+@media screen and (min-width: 750px) {
+  /* Circle sizing and placement */
+  #shopify-section-how_it_works .section-content-wrapper > .group-block > .group-block-content > .group-block > .group-block-content::before {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    font-size: 1.5rem;
+    order: 0;
+    margin-top: -28px;
+    align-self: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Image block: render above circle via order */
+  #shopify-section-how_it_works .section-content-wrapper > .group-block > .group-block-content > .group-block > .group-block-content > .image-block {
+    order: -1;
+  }
+
+  /* Text group: render below circle via order */
+  #shopify-section-how_it_works .section-content-wrapper > .group-block > .group-block-content > .group-block > .group-block-content > .group-block {
+    order: 1;
+  }
+}
+
+/* ========================================
+   Mobile (max-width: 749px)
+   ======================================== */
+@media screen and (max-width: 749px) {
+  /* Circle sizing for mobile */
+  #shopify-section-how_it_works .section-content-wrapper > .group-block > .group-block-content > .group-block > .group-block-content::before {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 1.125rem;
+  }
+
+  /* Hide image blocks on mobile */
+  #shopify-section-how_it_works .image-block {
+    display: none !important;
+  }
+
+  /* Card layout: horizontal with circle + text side by side */
+  #shopify-section-how_it_works .section-content-wrapper > .group-block > .group-block-content > .group-block > .group-block-content {
+    flex-direction: row !important;
+    gap: 20px !important;
+    align-items: flex-start !important;
+  }
+
+  /* Text blocks: left-aligned on mobile */
+  #shopify-section-how_it_works .text-block {
+    --text-align: left !important;
+  }
+
+  /* Steps group gap override */
+  #shopify-section-how_it_works .section-content-wrapper > .group-block > .group-block-content {
+    gap: 24px !important;
+  }
+
+  /* Section content wrapper gap override */
+  #shopify-section-how_it_works .section-content-wrapper {
+    gap: 32px !important;
+  }
+
+  /* Heading: smaller font, left-aligned on mobile */
+  #shopify-section-how_it_works .section-content-wrapper > .text-block:first-child {
+    --font-size: 1.5rem !important;
+    --text-align: left !important;
+  }
+
+  /* Ensure text group fills remaining space */
+  #shopify-section-how_it_works .section-content-wrapper > .group-block > .group-block-content > .group-block > .group-block-content > .group-block {
+    flex: 1;
+    min-width: 0;
+  }
+}

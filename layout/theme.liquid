@@ -32,6 +32,8 @@
     {%- render 'color-schemes' -%}
     {%- render 'custom-fonts' -%}
 
+    {{ 'how-it-works.css' | asset_url | stylesheet_tag }}
+
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
     {% endif %}

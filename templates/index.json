@@ -560,6 +560,299 @@
         "padding-block-end": 48
       }
     },
+    "how_it_works": {
+      "type": "section",
+      "blocks": {
+        "heading_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>How it works?</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "2rem",
+            "line_height": "tight",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "balance",
+            "color": "var(--color-foreground-heading)",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          }
+        },
+        "steps_group": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "flex-start",
+            "gap": 64,
+            "width": "fill",
+            "height": "fit",
+            "inherit_color_scheme": true
+          },
+          "blocks": {
+            "card_1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 24,
+                "width": "fill",
+                "height": "fit",
+                "inherit_color_scheme": true
+              },
+              "blocks": {
+                "image_1": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/image-64-314ee91e.png",
+                    "image_ratio": "adapt",
+                    "width": "fill",
+                    "border_radius": 4
+                  }
+                },
+                "text_group_1": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "height": "fit",
+                    "inherit_color_scheme": true
+                  },
+                  "blocks": {
+                    "heading_1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>Personalize your order</strong></p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1.125rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "desc_1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Pick from 100+ meat and seafood cuts, and complete your meals with sides and desserts everyone will love.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": ["heading_1", "desc_1"]
+                }
+              },
+              "block_order": ["image_1", "text_group_1"]
+            },
+            "card_2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 24,
+                "width": "fill",
+                "height": "fit",
+                "inherit_color_scheme": true
+              },
+              "blocks": {
+                "image_2": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/image-54-56600018.png",
+                    "image_ratio": "adapt",
+                    "width": "fill",
+                    "border_radius": 4
+                  }
+                },
+                "text_group_2": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "height": "fit",
+                    "inherit_color_scheme": true
+                  },
+                  "blocks": {
+                    "heading_2": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>Get a delicious delivery</strong></p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1.125rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "desc_2": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Your custom delivery will arrive frozen at peak freshness in fully curbside recyclable, insulated packaging.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": ["heading_2", "desc_2"]
+                }
+              },
+              "block_order": ["image_2", "text_group_2"]
+            },
+            "card_3": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 24,
+                "width": "fill",
+                "height": "fit",
+                "inherit_color_scheme": true
+              },
+              "blocks": {
+                "image_3": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/image-54-7e4917a1.png",
+                    "image_ratio": "adapt",
+                    "width": "fill",
+                    "border_radius": 4
+                  }
+                },
+                "text_group_3": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "gap": 4,
+                    "width": "fill",
+                    "height": "fit",
+                    "inherit_color_scheme": true
+                  },
+                  "blocks": {
+                    "heading_3": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>Savor the flavors</strong></p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1.125rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "desc_3": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Freeze your cuts and prepare them when you\u2019re ready\u2014grilled, seared, baked, or broiled\u2014and enjoy!</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": ["heading_3", "desc_3"]
+                }
+              },
+              "block_order": ["image_3", "text_group_3"]
+            }
+          },
+          "block_order": ["card_1", "card_2", "card_3"]
+        }
+      },
+      "block_order": ["heading_text", "steps_group"],
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 48,
+        "section_width": "page-width",
+        "color_scheme": "scheme-2",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
@@ -758,6 +1051,7 @@
   "order": [
     "hero_jVaWmY",
     "why_good_chop",
+    "how_it_works",
     "product_list_fa6P9H"
   ]
 }
