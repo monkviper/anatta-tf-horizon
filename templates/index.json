@@ -156,52 +156,406 @@
       }
     },
     "why_good_chop": {
-      "type": "why-good-chop",
+      "type": "section",
       "blocks": {
-        "outstanding_value": {
-          "type": "point",
+        "heading_group": {
+          "type": "group",
           "settings": {
-            "image": "shopify://shop_images/image-58-3bd67526.png",
-            "heading": "Outstanding Value",
-            "description": "Inflation-resistant pricing, members-only savings, and more."
-          }
+            "content_direction": "column",
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fill",
+            "height": "fit",
+            "inherit_color_scheme": true
+          },
+          "blocks": {
+            "heading_text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Why Good Chop?</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-heading--family)",
+                "font_size": "2rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "uppercase",
+                "wrap": "balance",
+                "color": "var(--color-foreground-heading)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "description_text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>In the past three years, meat and seafood prices in U.S. have gone up significantly. Our base plan prices have stayed the same since 2021.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            }
+          },
+          "block_order": ["heading_text", "description_text"]
         },
-        "american": {
-          "type": "point",
+        "points_group": {
+          "type": "group",
           "settings": {
-            "image": "shopify://shop_images/image-59-3e0fbd3b.png",
-            "heading": "100% American",
-            "description": "Proteins sourced from independent American farms and fisheries."
-          }
-        },
-        "deliveries": {
-          "type": "point",
-          "settings": {
-            "image": "shopify://shop_images/image-60-00a45093.png",
-            "heading": "Convenient Deliveries",
-            "description": "Flexible, fully customizable deliveries every 4, 6, or 8 weeks."
-          }
-        },
-        "guarantee": {
-          "type": "point",
-          "settings": {
-            "image": "shopify://shop_images/image-61-7107a924.png",
-            "heading": "Money-back Guarantee",
-            "description": "No commitments\u2014skip, reschedule, or cancel anytime."
-          }
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "gap": 32,
+            "width": "fill",
+            "height": "fit",
+            "inherit_color_scheme": true
+          },
+          "blocks": {
+            "point_1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "height": "fit",
+                "inherit_color_scheme": true
+              },
+              "blocks": {
+                "icon_1": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "none",
+                    "image_upload": "shopify://shop_images/image-58-3bd67526.png",
+                    "width": 68
+                  }
+                },
+                "content_1": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "gap": 0,
+                    "width": "fill",
+                    "height": "fit",
+                    "inherit_color_scheme": true
+                  },
+                  "blocks": {
+                    "heading_1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>Outstanding Value</strong></p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1.125rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "desc_1": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Inflation-resistant pricing, members-only savings, and more.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": ["heading_1", "desc_1"]
+                }
+              },
+              "block_order": ["icon_1", "content_1"]
+            },
+            "point_2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "height": "fit",
+                "inherit_color_scheme": true
+              },
+              "blocks": {
+                "icon_2": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "none",
+                    "image_upload": "shopify://shop_images/image-59-3e0fbd3b.png",
+                    "width": 90
+                  }
+                },
+                "content_2": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "gap": 0,
+                    "width": "fill",
+                    "height": "fit",
+                    "inherit_color_scheme": true
+                  },
+                  "blocks": {
+                    "heading_2": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>100% American</strong></p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1.125rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "desc_2": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Proteins sourced from independent American farms and fisheries.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": ["heading_2", "desc_2"]
+                }
+              },
+              "block_order": ["icon_2", "content_2"]
+            },
+            "point_3": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "height": "fit",
+                "inherit_color_scheme": true
+              },
+              "blocks": {
+                "icon_3": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "none",
+                    "image_upload": "shopify://shop_images/image-60-00a45093.png",
+                    "width": 52
+                  }
+                },
+                "content_3": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "gap": 0,
+                    "width": "fill",
+                    "height": "fit",
+                    "inherit_color_scheme": true
+                  },
+                  "blocks": {
+                    "heading_3": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>Convenient Deliveries</strong></p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1.125rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "desc_3": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Flexible, fully customizable deliveries every 4, 6, or 8 weeks.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": ["heading_3", "desc_3"]
+                }
+              },
+              "block_order": ["icon_3", "content_3"]
+            },
+            "point_4": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "height": "fit",
+                "inherit_color_scheme": true
+              },
+              "blocks": {
+                "icon_4": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "none",
+                    "image_upload": "shopify://shop_images/image-61-7107a924.png",
+                    "width": 50
+                  }
+                },
+                "content_4": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "gap": 0,
+                    "width": "fill",
+                    "height": "fit",
+                    "inherit_color_scheme": true
+                  },
+                  "blocks": {
+                    "heading_4": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>Money-back Guarantee</strong></p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1.125rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    },
+                    "desc_4": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>No commitments\u2014skip, reschedule, or cancel anytime.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "center",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      }
+                    }
+                  },
+                  "block_order": ["heading_4", "desc_4"]
+                }
+              },
+              "block_order": ["icon_4", "content_4"]
+            }
+          },
+          "block_order": ["point_1", "point_2", "point_3", "point_4"]
         }
       },
-      "block_order": [
-        "outstanding_value",
-        "american",
-        "deliveries",
-        "guarantee"
-      ],
+      "block_order": ["heading_group", "points_group"],
       "settings": {
-        "heading": "WHY GOOD CHOP?",
-        "description": "In the past three years, meat and seafood prices in U.S. have gone up significantly. Our base plan prices have stayed the same since 2021.",
-        "color_scheme": "scheme-2",
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 40,
         "section_width": "page-width",
+        "color_scheme": "scheme-2",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
