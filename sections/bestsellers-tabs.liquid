@@ -1,0 +1,772 @@
+{%- liquid
+  assign section_id = section.id
+  assign heading = section.settings.heading
+  assign button_text = section.settings.button_text
+  assign button_url = section.settings.button_url
+  assign card_button_text = section.settings.card_button_text | default: '+ Add to Box'
+  assign max_products = section.settings.max_products | default: 10
+-%}
+
+<div
+  class="color-{{ section.settings.color_scheme }} bestsellers-tabs-wrapper"
+  style="
+    --section-padding-top: {{ section.settings.padding-block-start }}px;
+    --section-padding-bottom: {{ section.settings.padding-block-end }}px;
+  "
+>
+  <div class="bestsellers-tabs" id="bestsellers-tabs-{{ section_id }}">
+    {%- comment -%} Header row: heading + arrows {%- endcomment -%}
+    <div class="bestsellers-tabs__header">
+      {%- if heading != blank -%}
+        <h2 class="bestsellers-tabs__heading">{{ heading | escape }}</h2>
+      {%- endif -%}
+      <div class="bestsellers-tabs__arrows" aria-label="Carousel navigation">
+        <button
+          type="button"
+          class="bestsellers-tabs__arrow bestsellers-tabs__arrow--prev"
+          aria-label="Scroll previous"
+          data-direction="prev"
+        >
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 8L12 16L20 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="bestsellers-tabs__arrow bestsellers-tabs__arrow--next"
+          aria-label="Scroll next"
+          data-direction="next"
+        >
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 8L20 16L12 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    {%- comment -%} Tabs + CTA row {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="bestsellers-tabs__nav-row">
+        <div class="bestsellers-tabs__tabs-scroll">
+          <div class="bestsellers-tabs__tabs" role="tablist" aria-label="Product categories">
+            {%- for block in section.blocks -%}
+              <button
+                type="button"
+                role="tab"
+                class="bestsellers-tabs__tab{% if forloop.first %} bestsellers-tabs__tab--active{% endif %}"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-controls="bestsellers-panel-{{ section_id }}-{{ forloop.index0 }}"
+                id="bestsellers-tab-{{ section_id }}-{{ forloop.index0 }}"
+                data-tab-index="{{ forloop.index0 }}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.label | escape }}
+              </button>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- if button_text != blank -%}
+          <a
+            href="{{ button_url | default: '#' }}"
+            class="bestsellers-tabs__cta-desktop"
+          >
+            {{ button_text | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Product carousels — one per tab {%- endcomment -%}
+    <div class="bestsellers-tabs__panels">
+      {%- for block in section.blocks -%}
+        <div
+          class="bestsellers-tabs__panel{% if forloop.first %} bestsellers-tabs__panel--active{% endif %}"
+          role="tabpanel"
+          id="bestsellers-panel-{{ section_id }}-{{ forloop.index0 }}"
+          aria-labelledby="bestsellers-tab-{{ section_id }}-{{ forloop.index0 }}"
+          {% unless forloop.first %}hidden{% endunless %}
+        >
+          {%- if block.settings.collection != blank -%}
+            <div class="bestsellers-tabs__carousel">
+              {%- for product in block.settings.collection.products limit: max_products -%}
+                {%- render 'bestsellers-product-card', product: product, card_button_text: card_button_text -%}
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            <div class="bestsellers-tabs__carousel">
+              <p class="bestsellers-tabs__empty">Assign a collection to this tab in the theme editor.</p>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Mobile CTA button {%- endcomment -%}
+    {%- if button_text != blank -%}
+      <div class="bestsellers-tabs__cta-mobile-wrap">
+        <a
+          href="{{ button_url | default: '#' }}"
+          class="bestsellers-tabs__cta-mobile"
+        >
+          {{ button_text | escape }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function() {
+    const section = document.getElementById('bestsellers-tabs-{{ section_id }}');
+    if (!section) return;
+
+    const tabs = section.querySelectorAll('.bestsellers-tabs__tab');
+    const panels = section.querySelectorAll('.bestsellers-tabs__panel');
+    const prevBtn = section.querySelector('.bestsellers-tabs__arrow--prev');
+    const nextBtn = section.querySelector('.bestsellers-tabs__arrow--next');
+
+    function activateTab(index) {
+      for (const tab of tabs) {
+        const isActive = parseInt(tab.dataset.tabIndex) === index;
+        tab.classList.toggle('bestsellers-tabs__tab--active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      }
+
+      for (const panel of panels) {
+        const panelIndex = parseInt(panel.id.split('-').pop());
+        const isActive = panelIndex === index;
+        panel.classList.toggle('bestsellers-tabs__panel--active', isActive);
+        panel.hidden = !isActive;
+      }
+
+      updateArrows();
+    }
+
+    function getActiveCarousel() {
+      const activePanel = section.querySelector('.bestsellers-tabs__panel--active');
+      if (!activePanel) return null;
+      return activePanel.querySelector('.bestsellers-tabs__carousel');
+    }
+
+    function updateArrows() {
+      const carousel = getActiveCarousel();
+      if (!carousel || !prevBtn || !nextBtn) return;
+
+      const atStart = carousel.scrollLeft <= 1;
+      const atEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1;
+
+      prevBtn.style.opacity = atStart ? '0.5' : '1';
+      nextBtn.style.opacity = atEnd ? '0.5' : '1';
+    }
+
+    for (const tab of tabs) {
+      tab.addEventListener('click', function() {
+        activateTab(parseInt(this.dataset.tabIndex));
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        const carousel = getActiveCarousel();
+        if (carousel) {
+          carousel.scrollBy({ left: -284, behavior: 'smooth' });
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        const carousel = getActiveCarousel();
+        if (carousel) {
+          carousel.scrollBy({ left: 284, behavior: 'smooth' });
+        }
+      });
+    }
+
+    const observer = new MutationObserver(updateArrows);
+    for (const panel of panels) {
+      const carousel = panel.querySelector('.bestsellers-tabs__carousel');
+      if (carousel) {
+        carousel.addEventListener('scroll', updateArrows, { passive: true });
+      }
+    }
+
+    updateArrows();
+
+    /* Keyboard navigation for tabs */
+    const tablist = section.querySelector('[role="tablist"]');
+    if (tablist) {
+      tablist.addEventListener('keydown', function(e) {
+        const tabArray = Array.from(tabs);
+        const currentIndex = tabArray.indexOf(document.activeElement);
+        if (currentIndex === -1) return;
+
+        let newIndex;
+
+        if (e.key === 'ArrowRight') {
+          newIndex = (currentIndex + 1) % tabArray.length;
+        } else if (e.key === 'ArrowLeft') {
+          newIndex = (currentIndex - 1 + tabArray.length) % tabArray.length;
+        } else if (e.key === 'Home') {
+          newIndex = 0;
+        } else if (e.key === 'End') {
+          newIndex = tabArray.length - 1;
+        } else {
+          return;
+        }
+
+        e.preventDefault();
+        tabArray[newIndex].focus();
+        activateTab(newIndex);
+      });
+    }
+  })();
+</script>
+
+{% stylesheet %}
+  .bestsellers-tabs-wrapper {
+    padding-block-start: var(--section-padding-top);
+    padding-block-end: var(--section-padding-bottom);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+
+  .bestsellers-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* Header: heading + arrows */
+  .bestsellers-tabs__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding-inline: max(1rem, 50% - var(--page-width) / 2);
+  }
+
+  .bestsellers-tabs__heading {
+    font-family: var(--font-heading--family);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 400;
+    color: var(--color-foreground-heading, var(--color-foreground));
+    margin: 0;
+  }
+
+  .bestsellers-tabs__arrows {
+    display: flex;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .bestsellers-tabs__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-foreground);
+    transition: opacity 0.2s ease;
+  }
+
+  .bestsellers-tabs__arrow:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  /* Tabs + CTA row */
+  .bestsellers-tabs__nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding-inline: max(1rem, 50% - var(--page-width) / 2);
+  }
+
+  .bestsellers-tabs__tabs-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bestsellers-tabs__tabs-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bestsellers-tabs__tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid #C1CCD1;
+    white-space: nowrap;
+  }
+
+  .bestsellers-tabs__tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 12px;
+    height: 36px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-family: var(--font-body--family);
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-foreground);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 0.2s ease, font-weight 0.2s ease;
+    margin-bottom: -1px;
+  }
+
+  .bestsellers-tabs__tab:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+  }
+
+  .bestsellers-tabs__tab--active {
+    border-bottom-color: #000000;
+    font-weight: 700;
+  }
+
+  .bestsellers-tabs__cta-desktop {
+    display: none;
+  }
+
+  /* Panels */
+  .bestsellers-tabs__panels {
+    position: relative;
+  }
+
+  .bestsellers-tabs__panel[hidden] {
+    display: none;
+  }
+
+  .bestsellers-tabs__carousel {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-inline-start: max(1rem, 50% - var(--page-width) / 2);
+    padding-inline-end: 1rem;
+  }
+
+  .bestsellers-tabs__carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bestsellers-tabs__empty {
+    font-family: var(--font-body--family);
+    font-size: 14px;
+    color: var(--color-foreground);
+    opacity: 0.6;
+    padding: 24px 0;
+    margin: 0;
+  }
+
+  /* Mobile CTA */
+  .bestsellers-tabs__cta-mobile-wrap {
+    display: flex;
+    justify-content: center;
+    padding-inline: max(1rem, 50% - var(--page-width) / 2);
+  }
+
+  .bestsellers-tabs__cta-mobile {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 240px;
+    height: 40px;
+    background-color: #0C384A;
+    color: #FFFFFF;
+    font-family: var(--font-body--family);
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: opacity 0.2s ease;
+  }
+
+  .bestsellers-tabs__cta-mobile:hover {
+    opacity: 0.9;
+  }
+
+  .bestsellers-tabs__cta-mobile:focus-visible {
+    outline: 2px solid #0C384A;
+    outline-offset: 2px;
+  }
+
+  /* Product card */
+  .bestsellers-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 268px;
+    min-width: 268px;
+    scroll-snap-align: start;
+  }
+
+  .bestsellers-card__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .bestsellers-card__gallery {
+    position: relative;
+    width: 268px;
+    height: 201px;
+    overflow: hidden;
+    background-color: #F7F7F7;
+  }
+
+  .bestsellers-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bestsellers-card__image-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #F7F7F7;
+  }
+
+  .bestsellers-card__badge {
+    position: absolute;
+    top: 8px;
+    inset-inline-start: 8px;
+    display: inline-flex;
+    align-items: center;
+    padding-inline: 8px;
+    height: 18px;
+    background-color: #BD3702;
+    color: #FFFFFF;
+    font-family: var(--font-body--family);
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  .bestsellers-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: space-between;
+    flex: 1;
+    padding: 12px;
+    background-color: #F9F7EF;
+  }
+
+  .bestsellers-card__details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .bestsellers-card__title {
+    font-family: var(--font-heading--family);
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    color: #202122;
+    margin: 0;
+  }
+
+  .bestsellers-card__title-link {
+    position: relative;
+    z-index: 2;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .bestsellers-card__title-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  .bestsellers-card__type {
+    font-family: var(--font-body--family);
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #8E602D;
+    margin: 0;
+  }
+
+  .bestsellers-card__description {
+    font-family: var(--font-body--family);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #000000;
+    margin: 0;
+  }
+
+  .bestsellers-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bestsellers-card__price {
+    font-family: var(--font-heading--family);
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    color: #000000;
+  }
+
+  .bestsellers-card__button {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 160px;
+    height: 32px;
+    padding-inline: 12px;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: var(--font-body--family);
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  .bestsellers-card__button:hover {
+    background-color: #F5F5F5;
+  }
+
+  .bestsellers-card__button:focus-visible {
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+  }
+
+  /* Desktop styles */
+  @media screen and (min-width: 750px) {
+    .bestsellers-tabs {
+      gap: 32px;
+    }
+
+    .bestsellers-tabs__heading {
+      font-size: 32px;
+      line-height: 40px;
+    }
+
+    .bestsellers-tabs__tabs {
+      gap: 16px;
+    }
+
+    .bestsellers-tabs__tab {
+      font-size: 14px;
+      line-height: 14px;
+      height: 38px;
+    }
+
+    .bestsellers-tabs__cta-desktop {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 240px;
+      height: 40px;
+      padding-inline: 24px;
+      background-color: #0C384A;
+      color: #FFFFFF;
+      font-family: var(--font-body--family);
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      flex-shrink: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .bestsellers-tabs__cta-desktop:hover {
+      opacity: 0.9;
+    }
+
+    .bestsellers-tabs__cta-desktop:focus-visible {
+      outline: 2px solid #0C384A;
+      outline-offset: 2px;
+    }
+
+    .bestsellers-tabs__cta-mobile-wrap {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bestsellers-tabs__arrow,
+    .bestsellers-tabs__tab,
+    .bestsellers-tabs__cta-desktop,
+    .bestsellers-tabs__cta-mobile,
+    .bestsellers-card__button {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.bestsellers_tabs",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Bestsellers"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop All Bestsellers"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "card_button_text",
+      "label": "Card button text",
+      "default": "+ Add to Box"
+    },
+    {
+      "type": "number",
+      "id": "max_products",
+      "label": "Max products per tab",
+      "default": 10
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 48,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 48,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Tab"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "t:names.bestsellers_tabs",
+      "settings": {
+        "heading": "Our Bestsellers",
+        "button_text": "Shop All Bestsellers"
+      },
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "label": "Beef"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "label": "Poultry"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "label": "Pork"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "label": "Seafood"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "label": "Speciality"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "label": "Sweets & Sides"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}

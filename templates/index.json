@@ -1970,6 +1970,64 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "bestsellers_tabs": {
+      "type": "bestsellers-tabs",
+      "settings": {
+        "heading": "Our Bestsellers",
+        "button_text": "Shop All Bestsellers",
+        "card_button_text": "+ Add to Box",
+        "max_products": 10,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      },
+      "blocks": {
+        "tab_beef": {
+          "type": "tab",
+          "settings": {
+            "label": "Beef"
+          }
+        },
+        "tab_poultry": {
+          "type": "tab",
+          "settings": {
+            "label": "Poultry"
+          }
+        },
+        "tab_pork": {
+          "type": "tab",
+          "settings": {
+            "label": "Pork"
+          }
+        },
+        "tab_seafood": {
+          "type": "tab",
+          "settings": {
+            "label": "Seafood"
+          }
+        },
+        "tab_speciality": {
+          "type": "tab",
+          "settings": {
+            "label": "Speciality"
+          }
+        },
+        "tab_sweets_sides": {
+          "type": "tab",
+          "settings": {
+            "label": "Sweets & Sides"
+          }
+        }
+      },
+      "block_order": [
+        "tab_beef",
+        "tab_poultry",
+        "tab_pork",
+        "tab_seafood",
+        "tab_speciality",
+        "tab_sweets_sides"
+      ]
     }
   },
   "order": [
@@ -1977,6 +2035,7 @@
     "why_good_chop",
     "how_it_works",
     "try_risk_free",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "bestsellers_tabs"
   ]
 }

@@ -1,0 +1,68 @@
+{%- doc -%}
+  Bestsellers Product Card
+
+  Renders a product card for the bestsellers tabs section.
+
+  @param {object} product - The product object (required)
+  @param {string} [card_button_text] - CTA button text (default: '+ Add to Box')
+{%- enddoc -%}
+
+{%- liquid
+  assign product = product | default: blank
+  assign card_button_text = card_button_text | default: '+ Add to Box'
+
+  unless product != blank
+    break
+  endunless
+
+  assign selected_variant = product.selected_or_first_available_variant
+  assign has_bestseller_tag = false
+  for tag in product.tags
+    if tag == 'bestseller'
+      assign has_bestseller_tag = true
+      break
+    endif
+  endfor
+-%}
+
+<article class="bestsellers-card" aria-labelledby="bestsellers-card-title-{{ product.id }}">
+  <a href="{{ product.url }}" class="bestsellers-card__link" aria-hidden="true" tabindex="-1"></a>
+  <div class="bestsellers-card__gallery">
+    {%- if product.featured_image != blank -%}
+      {{
+        product.featured_image
+        | image_url: width: 536
+        | image_tag:
+          loading: 'lazy',
+          widths: '268, 536',
+          sizes: '268px',
+          class: 'bestsellers-card__image',
+          alt: product.featured_image.alt | default: product.title
+      }}
+    {%- else -%}
+      <div class="bestsellers-card__image-placeholder"></div>
+    {%- endif -%}
+    {%- if has_bestseller_tag -%}
+      <span class="bestsellers-card__badge">Bestseller</span>
+    {%- endif -%}
+  </div>
+  <div class="bestsellers-card__content">
+    <div class="bestsellers-card__details">
+      <h3 id="bestsellers-card-title-{{ product.id }}" class="bestsellers-card__title">
+        <a href="{{ product.url }}" class="bestsellers-card__title-link">{{ product.title | escape }}</a>
+      </h3>
+      {%- if product.type != blank -%}
+        <p class="bestsellers-card__type">{{ product.type | escape }}</p>
+      {%- endif -%}
+      {%- if selected_variant.title != 'Default Title' and selected_variant.title != blank -%}
+        <p class="bestsellers-card__description">{{ selected_variant.title | escape }}</p>
+      {%- elsif product.metafields.descriptors.subtitle.value != blank -%}
+        <p class="bestsellers-card__description">{{ product.metafields.descriptors.subtitle.value | escape }}</p>
+      {%- endif -%}
+    </div>
+    <div class="bestsellers-card__footer">
+      <span class="bestsellers-card__price">{{ selected_variant.price | money }}</span>
+      <a href="{{ product.url }}" class="bestsellers-card__button">{{ card_button_text | escape }}</a>
+    </div>
+  </div>
+</article>
