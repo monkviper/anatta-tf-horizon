@@ -1,35 +1,23 @@
 {% comment %}
-  Custom Fonts — Cubano
+  Custom Fonts — Anton
 
-  Loads the Cubano font via @font-face and overrides the heading/accent
+  Loads the Anton font via Google Fonts and overrides the heading/accent
   CSS custom properties set by theme-styles-variables.liquid.
 
   Note: The font_picker settings (type_heading_font, type_accent_font) show
-  "Source Sans Pro" in the Shopify theme editor because Cubano is not in
-  Shopify's font library. The actual rendered font is Cubano via this CSS
-  override. If cubano.woff2 is missing from assets, headings will gracefully
-  fall back to Source Sans Pro.
+  "Source Sans Pro" in the Shopify theme editor because Anton is not in
+  Shopify's font library. The actual rendered font is Anton via this CSS
+  override. If Google Fonts is unreachable, headings will gracefully
+  fall back to sans-serif.
 {% endcomment %}
 
-<link
-  rel="preload"
-  as="font"
-  href="{{ 'cubano.woff2' | asset_url }}"
-  type="font/woff2"
-  crossorigin
->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 <style>
-  @font-face {
-    font-family: 'cubano';
-    src: url({{ 'cubano.woff2' | asset_url }}) format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
   :root {
-    --font-heading--family: 'cubano', sans-serif;
-    --font-accent--family: 'cubano', sans-serif;
+    --font-heading--family: 'Anton', sans-serif;
+    --font-accent--family: 'Anton', sans-serif;
   }
 </style>
