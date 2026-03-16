@@ -1970,55 +1970,6 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
-    },
-    "bestsellers_tabs": {
-      "type": "bestsellers-tabs",
-      "blocks": {
-        "tab_poultry": {
-          "type": "tab",
-          "settings": {
-            "label": "Men",
-            "collection": "men"
-          }
-        },
-        "tab_pork": {
-          "type": "tab",
-          "settings": {
-            "label": "Women",
-            "collection": "women"
-          }
-        },
-        "tab_beef": {
-          "type": "tab",
-          "settings": {
-            "label": "Shirts",
-            "collection": "shirts"
-          }
-        },
-        "tab_seafood": {
-          "type": "tab",
-          "settings": {
-            "label": "Men New",
-            "collection": "men"
-          }
-        }
-      },
-      "block_order": [
-        "tab_poultry",
-        "tab_pork",
-        "tab_beef",
-        "tab_seafood"
-      ],
-      "settings": {
-        "heading": "Our Bestsellers",
-        "button_text": "Shop All Bestsellers",
-        "button_url": "",
-        "card_button_text": "+ Add to Box",
-        "max_products": 10,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 64,
-        "padding-block-end": 64
-      }
     }
   },
   "order": [
@@ -2026,7 +1977,6 @@
     "why_good_chop",
     "how_it_works",
     "try_risk_free",
-    "product_list_fa6P9H",
-    "bestsellers_tabs"
+    "product_list_fa6P9H"
   ]
 }
