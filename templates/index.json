@@ -1973,61 +1973,52 @@
     },
     "bestsellers_tabs": {
       "type": "bestsellers-tabs",
-      "settings": {
-        "heading": "Our Bestsellers",
-        "button_text": "Shop All Bestsellers",
-        "card_button_text": "+ Add to Box",
-        "max_products": 10,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
-      },
       "blocks": {
-        "tab_beef": {
-          "type": "tab",
-          "settings": {
-            "label": "Beef"
-          }
-        },
         "tab_poultry": {
           "type": "tab",
           "settings": {
-            "label": "Poultry"
+            "label": "Men",
+            "collection": "men"
           }
         },
         "tab_pork": {
           "type": "tab",
           "settings": {
-            "label": "Pork"
+            "label": "Women",
+            "collection": "women"
+          }
+        },
+        "tab_beef": {
+          "type": "tab",
+          "settings": {
+            "label": "Shirts",
+            "collection": "shirts"
           }
         },
         "tab_seafood": {
           "type": "tab",
           "settings": {
-            "label": "Seafood"
-          }
-        },
-        "tab_speciality": {
-          "type": "tab",
-          "settings": {
-            "label": "Speciality"
-          }
-        },
-        "tab_sweets_sides": {
-          "type": "tab",
-          "settings": {
-            "label": "Sweets & Sides"
+            "label": "Men New",
+            "collection": "men"
           }
         }
       },
       "block_order": [
-        "tab_beef",
         "tab_poultry",
         "tab_pork",
-        "tab_seafood",
-        "tab_speciality",
-        "tab_sweets_sides"
-      ]
+        "tab_beef",
+        "tab_seafood"
+      ],
+      "settings": {
+        "heading": "Our Bestsellers",
+        "button_text": "Shop All Bestsellers",
+        "button_url": "",
+        "card_button_text": "+ Add to Box",
+        "max_products": 10,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
     }
   },
   "order": [
