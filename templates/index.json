@@ -1970,6 +1970,15 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "product_carousel": {
+      "type": "product-carousel",
+      "settings": {
+        "heading": "You may also like",
+        "padding-block-start": 48,
+        "padding-block-end": 80,
+        "color_scheme": "scheme-1"
+      }
     }
   },
   "order": [
@@ -1977,6 +1986,7 @@
     "why_good_chop",
     "how_it_works",
     "try_risk_free",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "product_carousel"
   ]
 }
