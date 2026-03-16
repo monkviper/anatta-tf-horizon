@@ -2016,8 +2016,8 @@
         "card_button_text": "+ Add to Box",
         "max_products": 10,
         "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 64,
+        "padding-block-end": 64
       }
     }
   },

@@ -235,7 +235,7 @@
   .bestsellers-tabs {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
   }
 
   /* Header: heading + arrows */
@@ -286,7 +286,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
+    gap: 32px;
     padding-inline: max(1rem, 50% - var(--page-width) / 2);
   }
 
@@ -382,6 +382,7 @@
     display: flex;
     justify-content: center;
     padding-inline: max(1rem, 50% - var(--page-width) / 2);
+    margin-top: 8px;
   }
 
   .bestsellers-tabs__cta-mobile {
@@ -434,6 +435,7 @@
     height: 201px;
     overflow: hidden;
     background-color: #F7F7F7;
+    border-radius: 6px 6px 0 0;
   }
 
   .bestsellers-card__image {
@@ -475,6 +477,7 @@
     flex: 1;
     padding: 12px;
     background-color: #F9F7EF;
+    border-radius: 0 0 6px 6px;
   }
 
   .bestsellers-card__details {
@@ -546,7 +549,7 @@
     align-items: center;
     min-width: 160px;
     height: 32px;
-    padding-inline: 12px;
+    padding-inline: 24px;
     background-color: #FFFFFF;
     color: #000000;
     font-family: var(--font-body--family);
@@ -597,7 +600,7 @@
       align-items: center;
       min-width: 240px;
       height: 40px;
-      padding-inline: 24px;
+      padding-inline: 32px;
       background-color: #0C384A;
       color: #FFFFFF;
       font-family: var(--font-body--family);
@@ -623,6 +626,10 @@
 
     .bestsellers-tabs__cta-mobile-wrap {
       display: none;
+    }
+
+    .bestsellers-card__gallery {
+      border-radius: 4px 4px 0 0;
     }
   }
 
@@ -684,7 +691,7 @@
       "min": 0,
       "max": 100,
       "step": 1,
-      "default": 48,
+      "default": 64,
       "unit": "px"
     },
     {
@@ -694,7 +701,7 @@
       "min": 0,
       "max": 100,
       "step": 1,
-      "default": 48,
+      "default": 64,
       "unit": "px"
     }
   ],
